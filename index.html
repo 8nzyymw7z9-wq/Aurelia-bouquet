@@ -1,56 +1,560 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Aurelia Bouquet</title>
+<title>AURELIA | Bouquet Designer</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #e8f5ef;
-      text-align: center;
-      color: #456052;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    header {
-      background: #cfe8e0;
-      padding: 40px 20px;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f6fbfa;
+  color:#40584d;
+}
 
-    h1 {
-      font-size: 40px;
-      letter-spacing: 5px;
-      margin: 0;
-    }
+header{
+  background:linear-gradient(135deg,#d9eff5,#dff1e5);
+  text-align:center;
+  padding:35px 20px;
+}
 
-    .box {
-      background: white;
-      margin: 30px 15px;
-      padding: 25px;
-      border-radius: 20px;
-    }
+header h1{
+  margin:0;
+  font-family:Georgia,serif;
+  letter-spacing:7px;
+  font-size:38px;
+}
 
-    h2 {
-      color: #668f7a;
-    }
-  </style>
+header p{
+  margin:10px 0 0;
+  color:#668075;
+  letter-spacing:1px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 15px 60px;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#7c9186;
+  margin-bottom:30px;
+}
+
+.flower-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+}
+
+.flower-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #dce9e3;
+  box-shadow:0 5px 15px rgba(60,90,75,.08);
+}
+
+.flower-card img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  display:block;
+}
+
+.flower-info{
+  padding:15px;
+}
+
+.flower-name{
+  font-size:17px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.price{
+  color:#6f9882;
+  font-weight:bold;
+  margin-bottom:14px;
+}
+
+.color-label{
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.colors{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:10px;
+}
+
+.color{
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  border:2px solid white;
+  box-shadow:0 0 0 1px #ccd9d3;
+  cursor:pointer;
+}
+
+.color:hover{
+  transform:scale(1.12);
+}
+
+input{
+  width:100%;
+  padding:10px;
+  border:1px solid #d5e2dc;
+  border-radius:10px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#91b9a5;
+}
+
+.note{
+  margin-top:35px;
+  padding:18px;
+  background:#e5f2ec;
+  border-radius:15px;
+  text-align:center;
+  font-size:14px;
+  color:#668075;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:30px;
+  }
+
+  .flower-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .flower-card img{
+    height:130px;
+  }
+
+  .flower-info{
+    padding:10px;
+  }
+
+  .flower-name{
+    font-size:14px;
+  }
+}
+</style>
+
 </head>
 
 <body>
 
-  <header>
-    <h1>AURELIA</h1>
-    <p>ออกแบบช่อดอกไม้ของคุณ</p>
-  </header>
+<header>
+<h1>AURELIA</h1>
+<p>DESIGN YOUR OWN BOUQUET</p>
+</header>
 
-  <div class="box">
-    <h2>🌸 เว็บไซต์กำลังอัปเดต</h2>
-    <p>ถ้าคุณเห็นข้อความนี้ แปลว่าโค้ดใหม่ทำงานแล้ว</p>
-    <p><strong>ทดสอบระบบวันที่ 3 กันยายน 2026</strong></p>
-  </div>
+<div class="container">
+
+<h2 class="title">เลือกดอกไม้ของคุณ</h2>
+
+<p class="subtitle">
+เลือกดอกไม้ ระบุสี และสร้างช่อในแบบของคุณ
+</p>
+
+<div class="flower-grid">
+
+<!-- 1 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">กุหลาบใหญ่</div>
+<div class="price">50 บาท</div>
+<div class="color-label">เลือกสี</div>
+<div class="colors">
+<div class="color" style="background:#d94b55"></div>
+<div class="color" style="background:#f6a5b8"></div>
+<div class="color" style="background:#ffffff"></div>
+<div class="color" style="background:#f5d76e"></div>
+</div>
+<input placeholder="หรือระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 2 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">กุหลาบเล็ก</div>
+<div class="price">30 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#d94b55"></div>
+<div class="color" style="background:#ffb6c8"></div>
+<div class="color" style="background:#ffffff"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 3 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1551799517-eb8f03cb5e6a?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ลิลลี่บาน</div>
+<div class="price">40 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#f6a5c0"></div>
+<div class="color" style="background:#ffdca8"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 4 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ลิลลี่หุบ</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#f4a7bd"></div>
+<div class="color" style="background:#f7dc6f"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 5 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1551731409-43eb3e517a1a?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ทานตะวัน</div>
+<div class="price">35 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#f5c842"></div>
+<div class="color" style="background:#f39c12"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 6 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ทานตะวันรีดกลีบ</div>
+<div class="price">40 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#f5c842"></div>
+<div class="color" style="background:#f39c12"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 7 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1469259943454-aa100abba749?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกระฆัง 6 ดอก</div>
+<div class="price">49 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#8e7cc3"></div>
+<div class="color" style="background:#9ec5fe"></div>
+<div class="color" style="background:white"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 8 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกระฆัง 8 ดอก</div>
+<div class="price">69 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#8e7cc3"></div>
+<div class="color" style="background:#9ec5fe"></div>
+<div class="color" style="background:white"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 9 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกคาร์เนชั่น</div>
+<div class="price">30 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#ef476f"></div>
+<div class="color" style="background:#ffb6c1"></div>
+<div class="color" style="background:white"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 10 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ลิลลี่แห่งหุบเขา 7 ดอก</div>
+<div class="price">49 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#e8f5e9"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 11 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกทิวลิป</div>
+<div class="price">30 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#e63946"></div>
+<div class="color" style="background:#f4a7bb"></div>
+<div class="color" style="background:#f7d154"></div>
+<div class="color" style="background:white"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 12 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกเดซี่</div>
+<div class="price">5 บาท / ดอก</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#f7d154"></div>
+<div class="color" style="background:#f4a7bb"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 13 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกเยอบีร่า</div>
+<div class="price">25 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#ef476f"></div>
+<div class="color" style="background:#f7d154"></div>
+<div class="color" style="background:#ff9f1c"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 14 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกไฮเดรนเยียเล็ก</div>
+<div class="price">45 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#8ecae6"></div>
+<div class="color" style="background:#b8a1d9"></div>
+<div class="color" style="background:#f4a7bb"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 15 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ลาเวนเดอร์เล็ก</div>
+<div class="price">5 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#9b8ac4"></div>
+<div class="color" style="background:#7c6db0"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 16 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1498814117408-e396f5507073?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกกล้วยไม้</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#b38bd4"></div>
+<div class="color" style="background:#f4a7bb"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 17 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกคาลล่าลิลลี่</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#f7d154"></div>
+<div class="color" style="background:#b38bd4"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 18 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1501426026826-31c667bdf23d?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกป๊อบปี้</div>
+<div class="price">30 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#e63946"></div>
+<div class="color" style="background:#ff6b6b"></div>
+<div class="color" style="background:white"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 19 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกไฮยาซินธ์</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#8e7cc3"></div>
+<div class="color" style="background:#f4a7bb"></div>
+<div class="color" style="background:white"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 20 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกทิวลิปเกลียว</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#e63946"></div>
+<div class="color" style="background:#f4a7bb"></div>
+<div class="color" style="background:#f7d154"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 21 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1551799517-eb8f03cb5e6a?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกลิลลี่บานน้อย</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#f4a7bb"></div>
+<div class="color" style="background:#ffdca8"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 22 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1551731409-43eb3e517a1a?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกลิลลี่กลีบโค้ง</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:white"></div>
+<div class="color" style="background:#f4a7bb"></div>
+<div class="color" style="background:#ffdca8"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+<!-- 23 -->
+<div class="flower-card">
+<img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80">
+<div class="flower-info">
+<div class="flower-name">ดอกเยอบีร่า (แบบที่ 2)</div>
+<div class="price">20 บาท</div>
+<div class="color-label">เลือกหรือระบุสี</div>
+<div class="colors">
+<div class="color" style="background:#ef476f"></div>
+<div class="color" style="background:#f7d154"></div>
+<div class="color" style="background:#ff9f1c"></div>
+</div>
+<input placeholder="ระบุสีที่ต้องการ">
+</div>
+</div>
+
+</div>
+
+<div class="note">
+หมายเหตุ: รูปภาพทั้งหมดในตอนนี้เป็นรูปตัวอย่างจากภายนอก
+เมื่อมีรูปดอกไม้จริงของ Aurelia เราจะเปลี่ยนเป็นรูปของร้านทีละรายการ
+</div>
+
+</div>
 
 </body>
 </html>
