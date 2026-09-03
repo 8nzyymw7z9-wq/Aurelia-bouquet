@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>AURELIA | Design Your Bouquet</title>
 
+
 <style>
+
+/* ================= RESET ================= */
+
 *{
   box-sizing:border-box;
 }
+
 
 body{
   margin:0;
@@ -18,24 +26,34 @@ body{
   color:#40594e;
 }
 
+
+/* ================= HEADER ================= */
+
 header{
   background:linear-gradient(135deg,#d8edf5,#dcefe2);
   text-align:center;
   padding:35px 20px;
 }
 
+
 header h1{
   margin:0;
   font-family:Georgia,serif;
   font-size:42px;
   letter-spacing:8px;
+  color:#40594e;
 }
+
 
 header p{
   margin:10px 0 0;
   color:#668075;
   letter-spacing:1px;
+  font-size:13px;
 }
+
+
+/* ================= CONTAINER ================= */
 
 .container{
   max-width:1200px;
@@ -43,7 +61,8 @@ header p{
   padding:25px 15px 70px;
 }
 
-/* ================= PREVIEW ================= */
+
+/* ================= BOUQUET PREVIEW ================= */
 
 .preview-section{
   background:white;
@@ -54,343 +73,793 @@ header p{
   border:1px solid #dce9e3;
 }
 
+
 .preview-section h2{
   text-align:center;
   margin-top:0;
+  margin-bottom:20px;
 }
 
-/* พื้นที่จัดช่อ */
+
+/* ================= BOUQUET AREA ================= */
 
 .bouquet-preview{
   position:relative;
-  height:400px;
-  background:linear-gradient(to bottom,#f9fdfb,#edf6f1);
+  height:450px;
+  background:
+  radial-gradient(
+    circle at center,
+    #ffffff 0%,
+    #f7fbf9 60%,
+    #edf6f1 100%
+  );
+
   border-radius:20px;
   overflow:hidden;
-  border:1px dashed #bdd4c7;
+  border:2px dashed #bdd4c7;
 }
 
-/* ข้อความตอนยังไม่มีดอก */
+
+/* ================= EMPTY MESSAGE ================= */
 
 .empty-message{
   position:absolute;
+
   top:50%;
   left:50%;
+
   transform:translate(-50%,-50%);
+
   color:#91a59b;
+
   text-align:center;
+
+  font-size:16px;
+
+  width:100%;
 }
 
-/* ดอกไม้ในช่อ */
+
+/* ================= FLOWERS INSIDE BOUQUET ================= */
 
 .preview-flower{
+
   position:absolute;
+
   width:130px;
   height:180px;
+
   object-fit:contain;
+
   cursor:grab;
+
   user-select:none;
+
   -webkit-user-drag:none;
+
   touch-action:none;
-  transition:filter .2s;
+
+  transform-origin:center center;
+
 }
+
 
 .preview-flower:active{
   cursor:grabbing;
-  filter:drop-shadow(0 8px 8px rgba(0,0,0,.15));
 }
 
-/* ปุ่ม */
+
+/* ================= SELECTED FLOWER ================= */
+
+.preview-flower.selected-flower{
+
+  filter:
+  drop-shadow(
+    0 6px 10px rgba(50,80,65,.30)
+  );
+
+  outline:
+  2px dashed #7fae96;
+
+  outline-offset:4px;
+
+}
+
+
+/* ================= EDIT TOOLS ================= */
+
+.edit-tools{
+
+  display:none;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+  margin-top:15px;
+
+  padding:15px;
+
+  background:#f5faf7;
+
+  border-radius:18px;
+
+  border:1px solid #dce9e3;
+
+}
+
+
+.edit-tools.show{
+  display:flex;
+}
+
+
+.edit-tools-title{
+
+  width:100%;
+
+  text-align:center;
+
+  font-size:13px;
+
+  color:#71867b;
+
+  margin-bottom:5px;
+
+}
+
+
+.edit-btn{
+
+  border:none;
+
+  background:white;
+
+  border:1px solid #d5e5dc;
+
+  color:#527565;
+
+  padding:10px 14px;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-size:14px;
+
+}
+
+
+.edit-btn:hover{
+
+  background:#dcefe5;
+
+}
+
+
+/* ================= MAIN BUTTONS ================= */
 
 .preview-buttons{
+
   display:flex;
+
   justify-content:center;
+
   gap:10px;
+
   margin-top:15px;
+
   flex-wrap:wrap;
+
 }
+
 
 .preview-buttons button{
+
   border:none;
+
   background:#dcefe5;
+
   color:#527565;
-  padding:10px 16px;
+
+  padding:11px 18px;
+
   border-radius:20px;
+
   cursor:pointer;
+
   font-size:14px;
+
 }
+
 
 .preview-buttons button:hover{
+
   background:#bfdccd;
+
 }
+
+
+/* ================= TOTAL PRICE ================= */
 
 .total-box{
+
   text-align:center;
+
   margin-top:20px;
+
 }
+
+
+.total-label{
+
+  color:#80958a;
+
+  font-size:14px;
+
+}
+
 
 .total-price{
-  font-size:24px;
+
+  font-size:26px;
+
   font-weight:bold;
+
   color:#5f8b75;
+
+  margin-top:5px;
+
 }
 
-/* ================= FLOWERS ================= */
+
+/* ================= SECTION TITLE ================= */
 
 .section-title{
+
   text-align:center;
+
   margin:35px 0 5px;
+
 }
+
 
 .section-subtitle{
+
   text-align:center;
+
   color:#80958a;
+
   margin-bottom:25px;
+
 }
+
+
+/* ================= FLOWER GRID ================= */
 
 .flower-grid{
+
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:18px;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(260px,1fr));
+
+  gap:20px;
+
 }
+
+
+/* ================= FLOWER CARD ================= */
 
 .flower-card{
+
   background:white;
+
   border-radius:20px;
+
   overflow:hidden;
+
   border:1px solid #dce9e3;
-  box-shadow:0 5px 15px rgba(60,90,75,.08);
+
+  box-shadow:
+  0 5px 15px rgba(60,90,75,.08);
+
 }
 
-.flower-image{
-  width:100%;
-  height:220px;
-  object-fit:contain;
-  padding:15px;
-  background:#f8fbf9;
-  display:block;
-}
 
 .flower-info{
-  padding:15px;
+
+  padding:18px;
+
 }
+
 
 .flower-name{
-  font-size:17px;
+
+  font-size:19px;
+
   font-weight:bold;
+
   margin-bottom:5px;
+
 }
+
 
 .price{
+
   color:#6f9882;
+
   font-weight:bold;
+
   margin-bottom:15px;
+
 }
 
-/* เลือกสีจากรูป */
 
-.variant-options{
+/* ================= COLOR VARIANT ================= */
+
+.variant-row{
+
   display:flex;
+
+  align-items:center;
+
   gap:10px;
-  margin-bottom:12px;
+
+  padding:10px 0;
+
+  border-top:
+  1px solid #edf2ef;
+
 }
 
-.variant-btn{
-  width:55px;
-  height:55px;
-  border-radius:12px;
-  border:2px solid transparent;
-  background:#f5f8f6;
-  padding:3px;
-  cursor:pointer;
+
+.variant-row:first-of-type{
+
+  border-top:none;
+
 }
 
-.variant-btn img{
-  width:100%;
-  height:100%;
+
+.variant-image{
+
+  width:60px;
+
+  height:60px;
+
   object-fit:contain;
+
+  flex-shrink:0;
+
 }
 
-.variant-btn.selected{
-  border-color:#76a58e;
+
+.variant-name{
+
+  flex:1;
+
+  font-size:14px;
+
+  color:#52665d;
+
 }
 
-/* จำนวน */
+
+/* ================= QUANTITY ================= */
 
 .quantity-box{
+
   display:flex;
+
   justify-content:center;
+
   align-items:center;
-  gap:15px;
-  margin-top:12px;
+
+  gap:10px;
+
 }
+
 
 .qty-btn{
-  width:38px;
-  height:38px;
+
+  width:34px;
+
+  height:34px;
+
   border:none;
+
   border-radius:50%;
+
   background:#dcefe5;
+
   color:#527565;
-  font-size:22px;
+
+  font-size:20px;
+
   cursor:pointer;
+
 }
+
+
+.qty-btn:hover{
+
+  background:#bfdccd;
+
+}
+
 
 .quantity{
-  font-size:18px;
+
+  font-size:17px;
+
   font-weight:bold;
-  min-width:25px;
+
+  min-width:22px;
+
   text-align:center;
+
 }
 
-/* หมายเหตุ */
+
+/* ================= NOTE ================= */
 
 .note{
+
   margin-top:40px;
+
   background:#e4f1eb;
+
   padding:18px;
+
   border-radius:15px;
+
   text-align:center;
+
   color:#668075;
+
+  line-height:1.7;
+
 }
 
-/* มือถือ */
+
+/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
+  header{
+    padding:28px 15px;
+  }
+
+
   header h1{
-    font-size:32px;
+    font-size:30px;
+    letter-spacing:6px;
   }
 
-  .flower-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
+
+  .container{
+    padding:18px 10px 50px;
   }
 
-  .flower-image{
-    height:150px;
+
+  .preview-section{
+    padding:15px;
   }
 
-  .flower-info{
-    padding:10px;
-  }
-
-  .flower-name{
-    font-size:14px;
-  }
 
   .bouquet-preview{
-    height:350px;
+    height:400px;
   }
 
+
   .preview-flower{
-    width:110px;
+    width:105px;
     height:150px;
+  }
+
+
+  .flower-grid{
+    grid-template-columns:1fr;
+  }
+
+
+  .edit-btn{
+    font-size:13px;
+    padding:9px 10px;
   }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- ================= HEADER ================= -->
+
 <header>
-  <h1>AURELIA</h1>
-  <p>DESIGN YOUR OWN BOUQUET</p>
+
+<h1>AURELIA</h1>
+
+<p>DESIGN YOUR OWN BOUQUET</p>
+
 </header>
+
+
 
 <div class="container">
 
-<!-- ================= ช่อดอกไม้ ================= -->
+
+<!-- ================= BOUQUET PREVIEW ================= -->
 
 <div class="preview-section">
 
 <h2>💐 ช่อดอกไม้ของคุณ</h2>
 
-<div class="bouquet-preview" id="bouquetPreview">
+
+<div
+class="bouquet-preview"
+id="bouquetPreview"
+>
+
 
 <div class="empty-message">
-เริ่มเลือกดอกไม้เพื่อสร้างช่อของคุณ
-</div>
+
+เลือกดอกไม้ด้านล่างเพื่อเริ่มออกแบบช่อของคุณ
 
 </div>
+
+
+</div>
+
+
+
+<!-- ================= EDIT TOOLS ================= -->
+
+<div
+class="edit-tools"
+id="editTools"
+>
+
+
+<div class="edit-tools-title">
+
+เลือกดอกไม้ในช่อ แล้วปรับขนาดหรือหมุนได้
+
+</div>
+
+
+<button
+class="edit-btn"
+onclick="rotateSelected(-15)"
+>
+
+↶ หมุนซ้าย
+
+</button>
+
+
+<button
+class="edit-btn"
+onclick="resizeSelected(-0.1)"
+>
+
+− เล็กลง
+
+</button>
+
+
+<button
+class="edit-btn"
+onclick="resizeSelected(0.1)"
+>
+
+＋ ใหญ่ขึ้น
+
+</button>
+
+
+<button
+class="edit-btn"
+onclick="rotateSelected(15)"
+>
+
+หมุนขวา ↷
+
+</button>
+
+
+<button
+class="edit-btn"
+onclick="deleteSelectedFlower()"
+>
+
+🗑 ลบดอก
+
+</button>
+
+
+</div>
+
+
+
+<!-- ================= MAIN BUTTONS ================= -->
 
 <div class="preview-buttons">
 
+
 <button onclick="autoArrange()">
+
 ✨ จัดช่ออัตโนมัติ
+
 </button>
+
 
 <button onclick="resetBouquet()">
+
 ↺ เริ่มใหม่
+
 </button>
 
+
 </div>
+
+
+
+<!-- ================= PRICE ================= -->
 
 <div class="total-box">
 
+<div class="total-label">
+
 ราคารวมเบื้องต้น
 
-<div class="total-price" id="totalPrice">
+</div>
+
+
+<div
+class="total-price"
+id="totalPrice"
+>
+
 0 บาท
-</div>
 
 </div>
 
+
 </div>
 
 
-<!-- ================= เลือกดอกไม้ ================= -->
+</div>
 
-<h2 class="section-title">เลือกดอกไม้</h2>
+
+
+<!-- ================= FLOWER SELECTION ================= -->
+
+<h2 class="section-title">
+
+เลือกดอกไม้
+
+</h2>
+
 
 <p class="section-subtitle">
+
 เลือกสีและจำนวนดอกไม้ที่ต้องการ
+
 </p>
 
-<div class="flower-grid" id="flowerGrid"></div>
+
+
+<div
+class="flower-grid"
+id="flowerGrid"
+>
+
+</div>
+
 
 
 <div class="note">
-คุณสามารถเลือกดอกไม้ แล้วลากจัดตำแหน่งในช่อได้ด้วยตัวเอง
-</div>
+
+💐 คุณสามารถเลือกดอกไม้ เพิ่มจำนวน แล้วลากแต่ละดอกเพื่อจัดตำแหน่งเองได้<br>
+
+กดที่ดอกไม้ในช่อเพื่อหมุน ย่อ หรือขยายขนาด
 
 </div>
+
+
+</div>
+
 
 
 <script>
 
-/* ================= ข้อมูลดอกไม้ ================= */
+
+/* =======================================================
+   ข้อมูลดอกไม้
+======================================================= */
+
 
 const flowers = [
 
+
+/* ================= กุหลาบใหญ่ ================= */
+
+
 {
+
 name:"ดอกกุหลาบใหญ่",
+
 price:50,
 
 variants:[
+
 {
 color:"แดง",
 image:"IMG_0139.png"
 },
+
 {
 color:"ชมพู",
 image:"IMG_0140.png"
 },
+
 {
 color:"ขาว",
 image:"IMG_0141.png"
 }
+
 ]
 
 },
 
+
+
+/* ================= กุหลาบเล็ก ================= */
+
+
 {
+
 name:"ดอกกุหลาบเล็ก",
+
 price:30,
-image:"https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=600&q=80"
+
+variants:[
+
+{
+color:"แดง",
+image:"IMG_0145.png"
 },
+
+{
+color:"โอรส",
+image:"IMG_0147.png"
+},
+
+{
+color:"ชมพู",
+image:"IMG_0146.png"
+}
+
+]
+
+},
+
+
+
+/* =======================================================
+   ดอกอื่น ๆ
+   ตอนนี้ยังใช้รูปชั่วคราวไปก่อน
+======================================================= */
+
 
 {
 name:"ดอกลิลลี่บาน",
@@ -398,11 +867,13 @@ price:40,
 image:"https://images.unsplash.com/photo-1551799517-eb8f03cb5e6a?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกลิลลี่หุบ",
 price:20,
 image:"https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกทานตะวัน",
@@ -410,17 +881,20 @@ price:35,
 image:"https://images.unsplash.com/photo-1551731409-43eb3e517a1a?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกทานตะวันรีดกลีบ",
 price:40,
 image:"https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกระฆัง 6 ดอก",
 price:49,
-image:"https://images.unsplash.com/photo-1469259943454-aa100abba749?auto=format&fit=crop&w=600&q=80"
+image:"https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกระฆัง 8 ดอก",
@@ -428,11 +902,13 @@ price:69,
 image:"https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกคาร์เนชั่น",
 price:30,
 image:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกลิลลี่แห่งหุบเขา 7 ดอก",
@@ -440,11 +916,13 @@ price:49,
 image:"https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกทิวลิป",
 price:30,
 image:"https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกเดซี่",
@@ -452,11 +930,13 @@ price:5,
 image:"https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกเยอบีร่า",
 price:25,
 image:"https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกไฮเดรนเยียเล็ก",
@@ -464,11 +944,13 @@ price:45,
 image:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกลาเวนเดอร์เล็ก",
 price:5,
 image:"https://images.unsplash.com/photo-1499002238440-d264edd596ec?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกกล้วยไม้",
@@ -476,11 +958,13 @@ price:20,
 image:"https://images.unsplash.com/photo-1498814117408-e396f5507073?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกคาลล่าลิลลี่",
 price:20,
 image:"https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกป๊อบปี้",
@@ -488,11 +972,13 @@ price:30,
 image:"https://images.unsplash.com/photo-1501426026826-31c667bdf23d?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกไฮยาซินธ์",
 price:20,
 image:"https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกทิวลิปเกลียว",
@@ -500,11 +986,13 @@ price:20,
 image:"https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=600&q=80"
 },
 
+
 {
 name:"ดอกลิลลี่บานน้อย",
 price:20,
 image:"https://images.unsplash.com/photo-1551799517-eb8f03cb5e6a?auto=format&fit=crop&w=600&q=80"
 },
+
 
 {
 name:"ดอกลิลลี่กลีบโค้ง",
@@ -512,343 +1000,1278 @@ price:20,
 image:"https://images.unsplash.com/photo-1551731409-43eb3e517a1a?auto=format&fit=crop&w=600&q=80"
 }
 
+
 ];
 
 
-/* ================= ตัวแปร ================= */
 
-const flowerGrid = document.getElementById("flowerGrid");
-const bouquetPreview = document.getElementById("bouquetPreview");
+/* =======================================================
+   ตัวแปรหลัก
+======================================================= */
+
+
+const flowerGrid =
+document.getElementById("flowerGrid");
+
+
+const bouquetPreview =
+document.getElementById("bouquetPreview");
+
+
+const editTools =
+document.getElementById("editTools");
+
+
+let activeFlower = null;
+
+
+/* เก็บจำนวนแยกตามดอกและสี */
+
 
 const selectedFlowers = {};
 
-flowers.forEach((flower,index)=>{
 
-selectedFlowers[index]={
-quantity:0,
-variant:0
-};
-
-});
-
-
-/* ================= สร้างการ์ด ================= */
 
 flowers.forEach((flower,index)=>{
 
-let mainImage =
-flower.variants
-? flower.variants[0].image
-: flower.image;
 
-let variantHTML="";
+selectedFlowers[index] = {};
+
 
 if(flower.variants){
 
+
 flower.variants.forEach((variant,vIndex)=>{
 
-variantHTML += `
 
-<button
-class="variant-btn ${vIndex===0 ? 'selected' : ''}"
-onclick="selectVariant(${index},${vIndex},this)"
-title="${variant.color}"
->
+selectedFlowers[index][vIndex] = 0;
 
-<img src="${variant.image}" alt="${variant.color}">
-
-</button>
-
-`;
-
-});
-
-}
-
-flowerGrid.innerHTML += `
-
-<div class="flower-card">
-
-<img
-class="flower-image"
-id="main-image-${index}"
-src="${mainImage}"
-alt="${flower.name}"
->
-
-<div class="flower-info">
-
-<div class="flower-name">
-${flower.name}
-</div>
-
-<div class="price">
-${flower.price} บาท
-</div>
-
-${variantHTML ? `
-<div class="variant-options">
-${variantHTML}
-</div>
-` : ''}
-
-<div class="quantity-box">
-
-<button
-class="qty-btn"
-onclick="changeQuantity(${index},-1)">
-−
-</button>
-
-<div
-class="quantity"
-id="qty-${index}">
-0
-</div>
-
-<button
-class="qty-btn"
-onclick="changeQuantity(${index},1)">
-+
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
 
 });
 
 
-/* ================= เลือกสี ================= */
+}else{
 
-function selectVariant(index,vIndex,button){
 
-selectedFlowers[index].variant=vIndex;
+selectedFlowers[index][0] = 0;
 
-const flower=flowers[index];
 
-document.getElementById(`main-image-${index}`).src =
-flower.variants[vIndex].image;
+}
 
-const card=button.closest(".flower-card");
 
-card.querySelectorAll(".variant-btn").forEach(btn=>{
-btn.classList.remove("selected");
 });
 
-button.classList.add("selected");
-
-}
 
 
-/* ================= จำนวน ================= */
+/* =======================================================
+   สร้างการ์ดดอกไม้
+======================================================= */
 
-function changeQuantity(index,change){
-
-const data=selectedFlowers[index];
-
-data.quantity += change;
-
-if(data.quantity < 0){
-data.quantity=0;
-}
-
-document.getElementById(`qty-${index}`).innerText =
-data.quantity;
-
-updateBouquet();
-
-}
-
-
-/* ================= อัปเดตช่อ ================= */
-
-function updateBouquet(){
-
-bouquetPreview.innerHTML="";
-
-let total=0;
-let hasFlowers=false;
 
 flowers.forEach((flower,index)=>{
 
-const selected=selectedFlowers[index];
 
-if(selected.quantity>0){
-
-hasFlowers=true;
-
-total += selected.quantity * flower.price;
-
-let image =
-flower.variants
-? flower.variants[selected.variant].image
-: flower.image;
+let content = "";
 
 
-for(let i=0;i<selected.quantity;i++){
+/* ถ้ามีหลายสี */
 
-const img=document.createElement("img");
 
-img.src=image;
+if(flower.variants){
 
-img.className="preview-flower";
 
-img.alt=flower.name;
+flower.variants.forEach((variant,vIndex)=>{
 
-/* ตำแหน่งเริ่มต้นแบบกระจาย */
 
-const left =
-35 + Math.random()*30;
+content += `
 
-const top =
-20 + Math.random()*35;
 
-img.style.left=left+"%";
-img.style.top=top+"%";
+<div class="variant-row">
 
-makeDraggable(img);
 
-bouquetPreview.appendChild(img);
+<img
+class="variant-image"
+src="${variant.image}"
+alt="${variant.color}"
+>
 
-}
 
-}
+<div class="variant-name">
+
+${variant.color}
+
+</div>
+
+
+<div class="quantity-box">
+
+
+<button
+class="qty-btn"
+onclick="changeQuantity(${index},${vIndex},-1)"
+>
+
+−
+
+</button>
+
+
+<div
+class="quantity"
+id="qty-${index}-${vIndex}"
+>
+
+0
+
+</div>
+
+
+<button
+class="qty-btn"
+onclick="changeQuantity(${index},${vIndex},1)"
+>
+
++
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
 
 });
+
+
+}
+
+
+/* ถ้ามีสีเดียว */
+
+
+else{
+
+
+content += `
+
+
+<div class="variant-row">
+
+
+<img
+class="variant-image"
+src="${flower.image}"
+alt="${flower.name}"
+>
+
+
+<div class="quantity-box">
+
+
+<button
+class="qty-btn"
+onclick="changeQuantity(${index},0,-1)"
+>
+
+−
+
+</button>
+
+
+<div
+class="quantity"
+id="qty-${index}-0"
+>
+
+0
+
+</div>
+
+
+<button
+class="qty-btn"
+onclick="changeQuantity(${index},0,1)"
+>
+
++
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+}
+
+
+
+flowerGrid.innerHTML += `
+
+
+<div class="flower-card">
+
+
+<div class="flower-info">
+
+
+<div class="flower-name">
+
+${flower.name}
+
+</div>
+
+
+<div class="price">
+
+${flower.price} บาท / ดอก
+
+</div>
+
+
+${content}
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
+/* =======================================================
+   เพิ่ม / ลด จำนวนดอกไม้
+======================================================= */
+
+
+function changeQuantity(
+index,
+variantIndex,
+change
+){
+
+
+let current =
+selectedFlowers[index][variantIndex];
+
+
+current += change;
+
+
+/* ห้ามติดลบ */
+
+
+if(current < 0){
+
+current = 0;
+
+}
+
+
+selectedFlowers[index][variantIndex] =
+current;
+
+
+/* แสดงจำนวนใหม่ */
+
+
+document.getElementById(
+
+`qty-${index}-${variantIndex}`
+
+).innerText = current;
+
+
+/* อัปเดตช่อ */
+
+
+updateBouquet();
+
+
+}
+
+
+
+/* =======================================================
+   สร้างช่อดอกไม้
+======================================================= */
+
+
+function updateBouquet(){
+
+
+/* ล้างช่อเก่า */
+
+
+bouquetPreview.innerHTML = "";
+
+
+/* ซ่อนเครื่องมือแก้ไข */
+
+
+activeFlower = null;
+
+editTools.classList.remove("show");
+
+
+let total = 0;
+
+let hasFlowers = false;
+
+let flowerNumber = 0;
+
+
+
+flowers.forEach((flower,index)=>{
+
+
+/* ถ้ามีหลายสี */
+
+
+if(flower.variants){
+
+
+flower.variants.forEach((variant,vIndex)=>{
+
+
+const quantity =
+selectedFlowers[index][vIndex];
+
+
+if(quantity > 0){
+
+
+hasFlowers = true;
+
+
+total +=
+quantity * flower.price;
+
+
+/* สร้างดอกตามจำนวน */
+
+
+for(
+
+let i = 0;
+
+i < quantity;
+
+i++
+
+){
+
+
+createBouquetFlower(
+
+variant.image,
+
+flower.name,
+
+variant.color,
+
+flowerNumber
+
+);
+
+
+flowerNumber++;
+
+
+}
+
+
+}
+
+
+});
+
+
+}
+
+
+/* ดอกสีเดียว */
+
+
+else{
+
+
+const quantity =
+selectedFlowers[index][0];
+
+
+if(quantity > 0){
+
+
+hasFlowers = true;
+
+
+total +=
+quantity * flower.price;
+
+
+for(
+
+let i = 0;
+
+i < quantity;
+
+i++
+
+){
+
+
+createBouquetFlower(
+
+flower.image,
+
+flower.name,
+
+"",
+
+flowerNumber
+
+);
+
+
+flowerNumber++;
+
+
+}
+
+
+}
+
+
+}
+
+
+});
+
+
+
+/* ถ้ายังไม่มีดอก */
 
 
 if(!hasFlowers){
 
-bouquetPreview.innerHTML=
 
-`<div class="empty-message">
-เริ่มเลือกดอกไม้เพื่อสร้างช่อของคุณ
-</div>`;
+bouquetPreview.innerHTML = `
+
+
+<div class="empty-message">
+
+เลือกดอกไม้ด้านล่างเพื่อเริ่มออกแบบช่อของคุณ
+
+</div>
+
+
+`;
+
 
 }
+
+
+
+/* ราคา */
 
 
 document.getElementById("totalPrice").innerText =
-total.toLocaleString()+" บาท";
+
+total.toLocaleString() + " บาท";
+
 
 }
 
 
-/* ================= ลากดอกไม้ ================= */
+
+/* =======================================================
+   สร้างดอกไม้ในช่อ
+======================================================= */
+
+
+function createBouquetFlower(
+
+image,
+
+name,
+
+color,
+
+number
+
+){
+
+
+const img =
+document.createElement("img");
+
+
+img.src = image;
+
+
+img.className =
+"preview-flower";
+
+
+img.alt =
+name + " " + color;
+
+
+/* ขนาดเริ่มต้น */
+
+
+img.dataset.rotation = 0;
+
+img.dataset.scale = 1;
+
+
+/* กระจายตำแหน่งเริ่มต้น */
+
+
+const column =
+number % 4;
+
+
+const row =
+Math.floor(number / 4);
+
+
+const left =
+25 + (column * 15);
+
+
+const top =
+20 + (row * 12);
+
+
+img.style.left =
+left + "%";
+
+
+img.style.top =
+top + "%";
+
+
+/* ลากได้ */
+
+
+makeDraggable(img);
+
+
+/* ใส่ในช่อ */
+
+
+bouquetPreview.appendChild(img);
+
+
+}
+
+
+
+/* =======================================================
+   ระบบลากดอกไม้
+======================================================= */
+
 
 function makeDraggable(element){
 
-let startX,startY;
-let originalLeft,originalTop;
 
-element.addEventListener("pointerdown",startDrag);
+let startX;
+
+let startY;
+
+let originalLeft;
+
+let originalTop;
+
+let moved = false;
+
+
+
+element.addEventListener(
+
+"pointerdown",
+
+startDrag
+
+);
+
+
 
 function startDrag(e){
 
-element.setPointerCapture(e.pointerId);
 
-startX=e.clientX;
-startY=e.clientY;
+element.setPointerCapture(
+e.pointerId
+);
 
-originalLeft=parseFloat(element.style.left);
-originalTop=parseFloat(element.style.top);
 
-element.style.zIndex=1000;
+startX = e.clientX;
 
-element.addEventListener("pointermove",drag);
-element.addEventListener("pointerup",stopDrag);
+startY = e.clientY;
+
+
+originalLeft =
+parseFloat(element.style.left) || 0;
+
+
+originalTop =
+parseFloat(element.style.top) || 0;
+
+
+moved = false;
+
+
+/* เอาดอกที่ลากขึ้นด้านหน้า */
+
+
+element.style.zIndex = 1000;
+
+
+element.addEventListener(
+
+"pointermove",
+
+drag
+
+);
+
+
+element.addEventListener(
+
+"pointerup",
+
+stopDrag
+
+);
+
+
+element.addEventListener(
+
+"pointercancel",
+
+stopDrag
+
+);
+
 
 }
+
+
 
 function drag(e){
 
-const rect=bouquetPreview.getBoundingClientRect();
 
-const moveX=
-((e.clientX-startX)/rect.width)*100;
+const rect =
+bouquetPreview.getBoundingClientRect();
 
-const moveY=
-((e.clientY-startY)/rect.height)*100;
 
-element.style.left=
-originalLeft+moveX+"%";
+const diffX =
+e.clientX - startX;
 
-element.style.top=
-originalTop+moveY+"%";
+
+const diffY =
+e.clientY - startY;
+
+
+/* เช็กว่าลากจริงไหม */
+
+
+if(
+
+Math.abs(diffX) > 5 ||
+
+Math.abs(diffY) > 5
+
+){
+
+moved = true;
 
 }
+
+
+/* คำนวณตำแหน่ง */
+
+
+const moveX =
+(diffX / rect.width) * 100;
+
+
+const moveY =
+(diffY / rect.height) * 100;
+
+
+/* ตำแหน่งใหม่ */
+
+
+element.style.left =
+(originalLeft + moveX) + "%";
+
+
+element.style.top =
+(originalTop + moveY) + "%";
+
+
+}
+
+
 
 function stopDrag(e){
 
-element.releasePointerCapture(e.pointerId);
 
-element.removeEventListener("pointermove",drag);
+try{
 
-element.style.zIndex="";
+
+element.releasePointerCapture(
+e.pointerId
+);
+
+
+}catch(error){}
+
+
+/* ลบ event */
+
+
+element.removeEventListener(
+
+"pointermove",
+
+drag
+
+);
+
+
+element.removeEventListener(
+
+"pointerup",
+
+stopDrag
+
+);
+
+
+element.removeEventListener(
+
+"pointercancel",
+
+stopDrag
+
+);
+
+
+/* กลับ z-index */
+
+
+element.style.zIndex = "";
+
+
+/* ถ้าไม่ได้ลาก แปลว่ากดเลือก */
+
+
+if(!moved){
+
+
+selectFlower(element);
+
 
 }
 
+
 }
 
 
-/* ================= จัดช่ออัตโนมัติ ================= */
+}
+
+
+
+/* =======================================================
+   เลือกดอกไม้
+======================================================= */
+
+
+function selectFlower(element){
+
+
+/* เอากรอบออกจากดอกอื่น */
+
+
+document
+.querySelectorAll(".preview-flower")
+.forEach(flower=>{
+
+
+flower.classList.remove(
+"selected-flower"
+);
+
+
+});
+
+
+/* ใส่กรอบดอกที่เลือก */
+
+
+element.classList.add(
+"selected-flower"
+);
+
+
+/* เก็บดอกที่กำลังแก้ */
+
+
+activeFlower =
+element;
+
+
+/* แสดงเครื่องมือ */
+
+
+editTools.classList.add(
+"show"
+);
+
+
+}
+
+
+
+/* =======================================================
+   อัปเดตการหมุนและขนาด
+======================================================= */
+
+
+function updateFlowerTransform(flower){
+
+
+const rotation =
+
+parseFloat(
+flower.dataset.rotation
+) || 0;
+
+
+const scale =
+
+parseFloat(
+flower.dataset.scale
+) || 1;
+
+
+/* หมุนและขยาย */
+
+
+flower.style.transform =
+
+`rotate(${rotation}deg) scale(${scale})`;
+
+
+}
+
+
+
+/* =======================================================
+   หมุนดอกไม้
+======================================================= */
+
+
+function rotateSelected(degree){
+
+
+if(!activeFlower){
+
+return;
+
+}
+
+
+let rotation =
+
+parseFloat(
+activeFlower.dataset.rotation
+) || 0;
+
+
+/* เพิ่มองศา */
+
+
+rotation += degree;
+
+
+/* บันทึก */
+
+
+activeFlower.dataset.rotation =
+rotation;
+
+
+/* อัปเดต */
+
+
+updateFlowerTransform(
+activeFlower
+);
+
+
+}
+
+
+
+/* =======================================================
+   ย่อ / ขยายดอกไม้
+======================================================= */
+
+
+function resizeSelected(amount){
+
+
+if(!activeFlower){
+
+return;
+
+}
+
+
+let scale =
+
+parseFloat(
+activeFlower.dataset.scale
+) || 1;
+
+
+/* เพิ่มลดขนาด */
+
+
+scale += amount;
+
+
+/* เล็กสุด */
+
+
+if(scale < 0.3){
+
+scale = 0.3;
+
+}
+
+
+/* ใหญ่สุด */
+
+
+if(scale > 3){
+
+scale = 3;
+
+}
+
+
+/* บันทึก */
+
+
+activeFlower.dataset.scale =
+scale;
+
+
+/* อัปเดต */
+
+
+updateFlowerTransform(
+activeFlower
+);
+
+
+}
+
+
+
+/* =======================================================
+   ลบดอกไม้ที่เลือก
+======================================================= */
+
+
+function deleteSelectedFlower(){
+
+
+if(!activeFlower){
+
+return;
+
+}
+
+
+/* ลบดอก */
+
+
+activeFlower.remove();
+
+
+/* ปิดเครื่องมือ */
+
+
+activeFlower = null;
+
+
+editTools.classList.remove(
+"show"
+);
+
+
+/* เช็กว่าดอกหมดหรือยัง */
+
+
+const remainingFlowers =
+
+bouquetPreview.querySelectorAll(
+".preview-flower"
+);
+
+
+if(remainingFlowers.length === 0){
+
+
+bouquetPreview.innerHTML = `
+
+<div class="empty-message">
+
+เลือกดอกไม้ด้านล่างเพื่อเริ่มออกแบบช่อของคุณ
+
+</div>
+
+`;
+
+
+}
+
+
+}
+
+
+
+/* =======================================================
+   จัดช่ออัตโนมัติ
+======================================================= */
+
 
 function autoArrange(){
 
-const items =
-bouquetPreview.querySelectorAll(".preview-flower");
 
-const total=items.length;
+const items =
+
+bouquetPreview.querySelectorAll(
+".preview-flower"
+);
+
+
+const total =
+items.length;
+
+
+/* ถ้าไม่มีดอก */
+
+
+if(total === 0){
+
+return;
+
+}
+
 
 items.forEach((item,index)=>{
 
+
+/* คำนวณตำแหน่งแบบครึ่งวงกลม */
+
+
 const angle =
-(total>1)
-? ((index/(total-1))*140)-70
-:0;
+
+total > 1
+
+?
+
+((index / (total - 1)) * 120) - 60
+
+:
+
+0;
+
+
+/* ระยะกระจาย */
+
 
 const radius =
-Math.min(25,8+total*2);
 
-const x=
-50+Math.sin(angle*Math.PI/180)*radius;
+Math.min(
+25,
+10 + total
+);
 
-const y=
-38+Math.cos(angle*Math.PI/180)*10;
 
-item.style.left=x+"%";
-item.style.top=y+"%";
+/* ตำแหน่ง X */
 
-item.style.transform=
-`translate(-50%,-50%) rotate(${angle/5}deg)`;
+
+const x =
+
+50 +
+
+Math.sin(
+angle * Math.PI / 180
+) * radius;
+
+
+/* ตำแหน่ง Y */
+
+
+const y =
+
+42 +
+
+Math.abs(
+Math.cos(
+angle * Math.PI / 180
+)
+) * 8;
+
+
+/* กำหนดตำแหน่ง */
+
+
+item.style.left =
+x + "%";
+
+
+item.style.top =
+y + "%";
+
+
+/* หมุนเล็กน้อย */
+
+
+const rotation =
+angle / 4;
+
+
+/* บันทึก */
+
+
+item.dataset.rotation =
+rotation;
+
+
+/* รีเซ็ตขนาด */
+
+
+item.dataset.scale =
+1;
+
+
+/* อัปเดต */
+
+
+updateFlowerTransform(item);
+
 
 });
+
 
 }
 
 
-/* ================= รีเซ็ต ================= */
+
+/* =======================================================
+   รีเซ็ตทั้งหมด
+======================================================= */
+
 
 function resetBouquet(){
 
+
+/* รีเซ็ตจำนวน */
+
+
 flowers.forEach((flower,index)=>{
 
-selectedFlowers[index].quantity=0;
 
-document.getElementById(`qty-${index}`).innerText=0;
+if(flower.variants){
+
+
+flower.variants.forEach((variant,vIndex)=>{
+
+
+selectedFlowers[index][vIndex] = 0;
+
+
+document.getElementById(
+
+`qty-${index}-${vIndex}`
+
+).innerText = 0;
+
 
 });
 
-updateBouquet();
 
 }
 
+
+else{
+
+
+selectedFlowers[index][0] = 0;
+
+
+document.getElementById(
+
+`qty-${index}-0`
+
+).innerText = 0;
+
+
+}
+
+
+});
+
+
+/* ล้างดอก */
+
+
+activeFlower = null;
+
+
+editTools.classList.remove(
+"show"
+);
+
+
+/* สร้างหน้าใหม่ */
+
+
+updateBouquet();
+
+
+}
+
+
 </script>
 
+
 </body>
+
 </html>
